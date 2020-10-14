@@ -1,6 +1,11 @@
 <?php
-
-
+// uncomment if you use PHPMailer
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
+// // Base files 
+// require '../PHPMailer/src/Exception.php';
+// require '../PHPMailer/src/PHPMailer.php';
+// require '../PHPMailer/src/SMTP.php';
 
 if(isset($_POST['reset-request-submit'])){
   
@@ -64,35 +69,43 @@ if(isset($_POST['reset-request-submit'])){
   // exit();
   
 
+  require 'mail.inc.php'; // this request includes my PHPMailer script and can be removed
   // PHPMailer //
-
-  require 'mail.inc.php';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// $mail = new PHPMailer(true);  
+// try {
+//   // Server settings
+//   // $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable verbose debug output
+//   $mail->isSMTP(); // using SMTP protocol                                     
+//   $mail->Host = 'smtp1.example.com'; // SMTP host as gmail 
+//   $mail->SMTPAuth = true;  // enable smtp authentication                             
+//   $mail->Username = 'user@example.com';  // sender gmail host              
+//   $mail->Password = 'secret'; // sender gmail host password                          
+//   $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+//   $mail->Port = 587;   // port for SMTP  or 465
   
+//   // Recepients
+//   $mail->setFrom('from@example.com', "PHP Login System"); // sender's email and name
+//   $mail->addAddress($userEmail);  // receiver's email and name
+//   // $mail->addReplyTo(joe@example.net', 'Joe User');
+//   // content
+//   $mail->isHTML(true);                                  // Set email format to HTML
+//   $mail->CharSet = 'UTF-8';
+//   $mail->Subject = 'Reset your password';
+//   $mail->Body    = '<p>We received a password reset request. The link to reset your password is below. If you did not make this request, you can ignore this email</p>
+//   <p>Here is your password reset link: <br>
+//   <a href="' .$url . '">' .$url . '</a></p>';
+
+//   $mail->send();
+//   header('location: ../reset-password.php?reset=success');
+//   exit();
   
+// } catch (Exception $e) { // handle error.
+//   header('location: ../reset-password.php?reset=error');
+//   echo " {$mail->ErrorInfo}";
+//   exit();
+// } 
+
+
 }else{
   header("Location: ../signup.php"); 
   exit();

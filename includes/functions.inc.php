@@ -51,17 +51,17 @@ function passwordMatch($pwd, $pwdrepeat)
   return $result;
 }
 
-function userExists($conn, $username, $email)
+function userExists($conn, $username)
 {
 
-  $sql = "SELECT * FROM users WHERE usersUid = ? OR usersEmail = ?;";
+  $sql = "SELECT * FROM users WHERE usersUid = ?;";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
     echo "Error creating table: " . $conn->error;
     header('location: ../signup.php?error=stmtuserfail');
     exit();
   }
-  mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+  mysqli_stmt_bind_param($stmt, "s", $username);
   mysqli_stmt_execute($stmt);
 
   $resultData = mysqli_stmt_get_result($stmt);
@@ -75,26 +75,27 @@ function userExists($conn, $username, $email)
   mysqli_close($conn);
 }
 
-// function emailExists($conn, $email){
-//   $sql ="SELECT* FROM users WHERE usersEmail = ?;";
-//   $stmt = mysqli_stmt_init($conn);
-//   if(!mysqli_stmt_prepare($stmt, $sql)){
-//     header('location: ../signup.php?error=stmtfail');
-//     exit();
-//   }
-//   mysqli_stmt_bind_param($stmt, "s", $email);
-//   mysqli_stmt_execute($stmt);
+function emailExists($conn, $email){
+  $sql ="SELECT* FROM users WHERE usersEmail = ?;";
+  $stmt = mysqli_stmt_init($conn);
+  if(!mysqli_stmt_prepare($stmt, $sql)){
+    header('location: ../signup.php?error=stmtfail');
+    exit();
+  }
+  mysqli_stmt_bind_param($stmt, "s", $email);
+  mysqli_stmt_execute($stmt);
 
-//   $resultData = mysqli_stmt_get_result($stmt);
-//   if($row = mysqli_fetch_assoc($resultData)){
-//     return $row;
-//   }
-//   else{
-//     $result = false;
-//     return $result;
-//   }
-//   mysqli_stmt_close($stmt);
-// }
+  $resultData = mysqli_stmt_get_result($stmt);
+  if($row = mysqli_fetch_assoc($resultData)){
+    return $row;
+  }
+  else{
+    $result = false;
+    return $result;
+  }
+  mysqli_stmt_close($stmt);
+  mysqli_close($conn);
+}
 
 function createUser($conn, $name, $email, $username, $pwd)
 {

@@ -31,14 +31,14 @@ if (isset($_POST['submit'])) {
     header('Location:../signup.php?error=pwdnotmatch&name='.$name."&email=".$email."&uid=".$username);
     exit();
   }
-  if (userExists($conn, $username, $email) !== false) {
+  if (userExists($conn, $username) !== false) {
     header('Location:../signup.php?error=userexist&name='.$name."&email=".$email."&uid=".$username);
     exit();
   }
-  // if (emailExists($conn, $email) !== false) {
-  //   header('Location:../signup.php?error=emailexist');
-  //   exit();
-  // }
+  if (emailExists($conn, $email) !== false) {
+    header('Location:../signup.php?error=emailexist&name='.$name."&email=".$email."&uid=".$username);
+    exit();
+  }
 
   createUser($conn, $name, $email, $username, $pwd);
   

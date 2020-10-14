@@ -21,7 +21,7 @@
       <?php
         if(isset($_GET['error'])){
           if ($_GET['error'] === "emptyinput") {
-            echo "<p class='error-msg'>You need to fill all fields!</p>";
+            echo "<p class='error-msg'>Please fill all fields!</p>";
           }
           if ($_GET['error'] === "invaliduid") {
             echo "<p class='error-msg'>Invalid username!</p>";
@@ -36,12 +36,11 @@
             echo "<p class='error-msg'>Password do not match!</p>";
           }
           if ($_GET['error'] === "userexist") {
-            echo "<p class='error-msg'>Username or email already taken!</p>";
+            echo "<p class='error-msg'>Username already taken!</p>";
           }
           if ($_GET['error'] === "emailexist") {
             echo "<p class='error-msg'>Email already registered!</p>";
           }
-  
           if ($_GET['error'] === "stmtuserfail") {
             echo "<p class='error-msg'>Database error!</p>";
           }
@@ -52,12 +51,7 @@
             echo "<p class='error-msg'><span style='color: green;'>You have signed up and can now log in!</span></p>";
           }
         }
-        if(isset($_GET['newpwd'])){
-          if($_GET['newpwd']==="passwordupdated"){
-            echo "<p class='success-msg'>Password updated! You can log in now!</p>";
-          }
-          
-        }
+
         ?>
     </form>
   </section>

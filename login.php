@@ -29,6 +29,11 @@
             echo "<p class='error-msg'><span style='color: green;'>You have signed up and can now log in!</span></p>";
           }
         }
+        if(isset($_GET['newpwd'])){
+          if($_GET['newpwd']==="passwordupdated"){
+            echo "<p class='success-msg'>Password updated! You can log in now!</p>";
+          }
+        }
         ?>
     </form>
   </section>
