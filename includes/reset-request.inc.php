@@ -1,15 +1,5 @@
 <?php
 
-// PHPMailer classes into the global namespace
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-// Base files 
-require '../PHPMailer/src/Exception.php';
-require '../PHPMailer/src/PHPMailer.php';
-require '../PHPMailer/src/SMTP.php';
-// Load Composer's autoloader
-// require 'vendor/autoload.php';
-// create object of PHPMailer class with boolean parameter which sets/unsets exception.
 
 
 if(isset($_POST['reset-request-submit'])){
@@ -65,50 +55,18 @@ if(isset($_POST['reset-request-submit'])){
   // $message .= '<a href="' .$url . '">' .$url . '</a></p>';
 
   //Headers for email
-  // $headers = "From: Hobid <test@hobid.ee>\r\n";
-  // $headers .= "Reply-To: annekaks@hotmail.com\r\n";
+  // $headers = "From: YourSite <yourmail@gmail.com>\r\n";
+  // $headers .= "Reply-To: someemail@mail.com\r\n";
   // $headers .= "Content-type: text/html\r\n";
 
   // mail($to, $subject, $message, $headers);
+  // header('location: ../reset-password.php?reset=success');
+  // exit();
   
-  
-  // PHP MAILER //////////
 
+  // PHPMailer //
 
-  $mail = new PHPMailer(true);
-try {
-  // Server settings
-  // $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable verbose debug output
-  $mail->isSMTP(); // using SMTP protocol                                     
-  $mail->Host = 'mail.veebimajutus.ee'; // SMTP host as gmail 
-  $mail->SMTPAuth = true;  // enable smtp authentication                             
-  $mail->Username = 'test@hobid.ee';  // sender gmail host              
-  $mail->Password = 'cu237777'; // sender gmail host password                          
-  $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-  $mail->Port = 465;   // port for SMTP     
-  
-  // Recepients
-  $mail->setFrom('test@hobid.ee', "Reio Kruusement"); // sender's email and name
-  $mail->addAddress($userEmail);  // receiver's email and name
-  $mail->addReplyTo('annekaks@hotmail.com', "information");
-  // content
-  $mail->isHTML(true);                                  // Set email format to HTML
-  $mail->CharSet = 'UTF-8';
-  $mail->Subject = 'Reset your password';
-  $mail->Body    = '<p>We received a password reset request. The link to reset your password is below. If you did not make this request, you can ignore this email</p>
-  <p>Here is your password reset link: <br>
-  <a href="' .$url . '">' .$url . '</a></p>';
-
-  $mail->send();
-  header('location: ../reset-password.php?reset=success');
-  exit();
-  
-} catch (Exception $e) { // handle error.
-  header('location: ../reset-password.php?reset=error');
-  echo " {$mail->ErrorInfo}";
-  exit();
-} 
-
+  require 'mail.inc.php';
 
 
 
