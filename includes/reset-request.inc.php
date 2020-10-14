@@ -69,7 +69,7 @@ if(isset($_POST['reset-request-submit'])){
   // exit();
   
 
-  require 'mail.inc.php'; // this request includes my PHPMailer script and can be removed
+
   // PHPMailer //
 // $mail = new PHPMailer(true);  
 // try {
